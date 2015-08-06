@@ -6,21 +6,23 @@ describe Encryptor do
     @test = Encryptor.new
     @letter = 'm'
     @string = 'hello'
-
-  it "encrypts a letter"
-    @test.encrypt_letter(@letter).should == "z"
+    @rotation = 13
   end
 
-  it "encrypts a string"
-    @test.encrypt_string(@string).should == 'uryyb'
+  it "encrypts a letter" do 
+    @test.encrypt_letter(@letter, @rotation).should == 'z'
   end
 
-  it "decrypts a letter"
+  it "encrypts a string" do 
+    @test.encrypt(@string, @rotation).should == 'uryy!'
+  end
+
+  it "decrypts a letter" do  
     @test.decrypt_letter('z').should == 'm'
   end
 
-  it "decrypts a letter"
-    @test.decrypt_string('uryyb').should == 'hello'
+  it "decrypts a letter" do 
+    @test.decrypt_string('uryy!').should == 'hello'
   end
 
 end
