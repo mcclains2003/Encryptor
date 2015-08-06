@@ -6,11 +6,11 @@ class Encryptor
     Hash[characters.zip(rotatated_characters)]
   end
 
-    def encrypt(string)
+  def encrypt(string,rotation)
     letters = string.split("")
 
     results = letters.collect do |letter|
-      encrypted_letter = encrypt_letter(letter)
+      encrypted_letter = encrypt_letter(letter,rotation)
     end
 
     results.join
