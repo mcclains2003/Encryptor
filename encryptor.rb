@@ -10,16 +10,25 @@ class Encryptor
      'y' => 'l', 'z' => 'm'}
   end
 
-  def encrypt(string)
-    # 1. Cut the input string into letters
+  # def encrypt(string)
+  #   letters = string.split("")
+
+  #   results = []
+  #   letters.each do |letter|
+  #     encrypted_letter = encrypt_letter(letter)
+  #     results.push(encrypted_letter)
+  #   end
+
+  #   results.join
+  # end
+
+    def encrypt(string)
     letters = string.split("")
-    # 2. Encrypt those letters one at a time, gathering the results
-    results = []
-    letters.each do |letter|
+
+    results = letters.collect do |letter|
       encrypted_letter = encrypt_letter(letter)
-      results.push(encrypted_letter)
     end
-    # 3. Join the results back together in one string
+
     results.join
   end
 
