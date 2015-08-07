@@ -7,6 +7,7 @@ describe Encryptor do
     @letter = 'm'
     @string = 'hello'
     @rotation = 13
+    @filename = 'file_spec_test.txt'
   end
 
   it "encrypts a letter" do 
@@ -23,6 +24,14 @@ describe Encryptor do
 
   it "decrypts a letter" do 
     @test.decrypt('uryy!', @rotation).should == 'hello'
+  end
+
+  it "encrypts a file" do
+    @test.encrypt_file(@filename, @rotation).should == "`'tn$-v%-%)rr&"
+  end
+
+  it "decrypts a file" do
+    @test.decrypt_file(@filename + ".encrypted", @rotation) == "Sugar is sweet"
   end
 
 end
