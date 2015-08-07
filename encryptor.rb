@@ -6,19 +6,31 @@ class Encryptor
     Hash[characters.zip(rotatated_characters)]
   end
 
-  def encrypt(string,rotation)
+  def encrypt_letter(letter, rotation)
+    cipher_for_rotation = cipher(rotation)
+    cipher_for_rotation[letter]
+  end
+
+  def decrypt_letter(letter, rotation)
+    cipher_for_rotation = cipher(rotation * -1)
+    cipher_for_rotation[letter]
+  end
+
+  def encrypt(string, rotation)
     letters = string.split("")
 
     results = letters.collect do |letter|
-      encrypted_letter = encrypt_letter(letter,rotation)
-    end
-
-    results.join
+      encrypted_letter = encrypt_letter(letter, rotation)
+    end.join
+    
   end
 
-  def encrypt_letter(letter,rotation)
-    cipher_for_rotation = cipher(rotation)
-    cipher_for_rotation[letter]
+  def decrypt(string, rotation)
+    letters = string.split("")
+
+    results = letters.collect do |letter|
+      decrypted_letter = decrypt_letter(letter, rotation)
+    end.join
   end
 
 end

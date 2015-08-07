@@ -18,11 +18,11 @@ describe Encryptor do
   end
 
   it "decrypts a letter" do  
-    @test.decrypt_letter('z').should == 'm'
+    @test.decrypt_letter('z', @rotation).should == 'm'
   end
 
   it "decrypts a letter" do 
-    @test.decrypt_string('uryy!').should == 'hello'
+    @test.decrypt('uryy!', @rotation).should == 'hello'
   end
 
 end
