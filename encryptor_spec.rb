@@ -26,12 +26,19 @@ describe Encryptor do
     @test.decrypt('uryy!', @rotation).should == 'hello'
   end
 
+  it "cracks a message by attempting to figure out the rotation" do
+    @test.crack(@message).should ==""
+  end
+
   it "encrypts a file" do
-    @test.encrypt_file(@filename, @rotation).should == "`'tn$-v%-%)rr&"
+    @test.encrypt_file(@filename, @rotation)
+    text = File.open('file_spec_test.txt.encrypted', 'r')
+    text.read.should == "`'tn$-v%-%)rr&"
   end
 
   it "decrypts a file" do
     @test.decrypt_file(@filename + ".encrypted", @rotation) == "Sugar is sweet"
   end
+
 
 end
