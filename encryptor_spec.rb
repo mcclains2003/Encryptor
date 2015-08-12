@@ -1,3 +1,5 @@
+require 'pry'
+
 require_relative 'encryptor'
 
 describe Encryptor do 
@@ -32,7 +34,8 @@ describe Encryptor do
 
   it "encrypts a file" do
     @test.encrypt_file(@filename, @rotation)
-    text = File.open('file_spec_test.txt.encrypted', 'r')
+    text = File.read('file_spec_test.txt.encrypted')
+    #binding.pry
     text.read.should == "`'tn$-v%-%)rr&"
   end
 

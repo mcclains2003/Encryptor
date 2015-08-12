@@ -27,7 +27,6 @@ class Encryptor
     results = letters.collect do |letter|
       encrypted_letter = encrypt_letter(letter, rotation)
     end.join
-    
   end
 
   def decrypt(string, rotation)
@@ -68,34 +67,3 @@ class Encryptor
   end
 
 end
-
-  puts "Would you like to encrypt or decrypt a message?"
-  choice = $stdin.gets.chomp
-
-  case choice
-  when "encrypt"
-
-    puts "Please type a message you would like encrypted:"
-    ins_message = $stdin.gets.chomp.to_s
-
-    puts "Please enter the encryption rotation:"
-    rotation = $stdin.gets.chomp.to_i
-
-    e = Encryptor.new
-
-    puts e.encrypt(ins_message, rotation)
-
-  when "decrypt"
-    puts "Please type a message you would like decrypted:"
-    ins_message = $stdin.gets.chomp.to_s
-
-    puts "Please enter the decryption rotation:"
-    rotation = $stdin.gets.chomp.to_i
-
-    e = Encryptor.new
-
-    puts e.decrypt(ins_message, rotation)
-  else
-    puts "That is not an option"
-    exit(0)
-  end
