@@ -23,6 +23,7 @@ class Encryptor
 
   def encrypt(string, rotation)
     letters = string.split("")
+    
 
     results = letters.collect do |letter|
       encrypted_letter = encrypt_letter(letter, rotation)

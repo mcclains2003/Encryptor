@@ -3,6 +3,7 @@ require 'pry'
 require_relative 'encryptor'
 
 describe Encryptor do 
+  
 
   before do 
     @test = Encryptor.new
