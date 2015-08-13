@@ -1,8 +1,12 @@
 class Encryptor
 
-  # def initialize
-  #   @message = message
-  #   @rotation = rotation
+  def initialize
+    @message = message
+    @rotation = rotation
+  end
+
+  # def check?(password)
+  #   Digest::MD5.hexdigest(password) == 'd41a9e3915fd905f6427a8e3770546cf'
   # end
 
   def cipher(rotation)
@@ -21,7 +25,7 @@ class Encryptor
     cipher_for_rotation[letter]
   end
 
-  def encrypt(string, x, y, z)
+  def encrypt_message(string, x, y, z)
     letters = string.split("")
     a = [x, y, z]
     b = []
@@ -43,7 +47,7 @@ class Encryptor
   #   end.join
   # end
 
-  def decrypt(string, x, y, z)
+  def decrypt_message(string, x, y, z)
     letters = string.split("")
     a = [x, y, z]
     b = []
@@ -53,6 +57,14 @@ class Encryptor
         b.push(x)
       end
       decrypted_letter = decrypt_letter(letter, b.shift)
+    end.join
+  end
+
+    def decrypt(string, rotation)
+    letters = string.split("")
+
+    results = letters.collect do |letter|
+      decrypted_letter = decrypt_letter(letter, rotation)
     end.join
   end
 
@@ -81,7 +93,7 @@ class Encryptor
 
   def crack(message)
     supported_characters.count.times.collect do |attempt|
-      decrypt(message, attempt)
+      puts decrypt(message, attempt)
     end
   end
 
