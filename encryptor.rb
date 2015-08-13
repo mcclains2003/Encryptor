@@ -21,20 +21,38 @@ class Encryptor
     cipher_for_rotation[letter]
   end
 
-  def encrypt(string, rotation)
+  def encrypt(string, x, y, z)
     letters = string.split("")
+    a = [x, y, z]
+    b = []
     
-
     results = letters.collect do |letter|
-      encrypted_letter = encrypt_letter(letter, rotation)
+      a.cycle(string.size / 2) do |x| 
+        b.push(x)
+      end
+      encrypted_letter = encrypt_letter(letter, b.shift)
     end.join
   end
 
-  def decrypt(string, rotation)
+  # def encrypt(string, rotation)
+  #   letters = string.split("")
+
+
+  #   results = letters.collect do |letter|
+  #     encrypted_letter = encrypt_letter(letter, rotation)
+  #   end.join
+  # end
+
+  def decrypt(string, x, y, z)
     letters = string.split("")
+    a = [x, y, z]
+    b = []
 
     results = letters.collect do |letter|
-      decrypted_letter = decrypt_letter(letter, rotation)
+      a.cycle(string.size / 2) do |x| 
+        b.push(x)
+      end
+      decrypted_letter = decrypt_letter(letter, b.shift)
     end.join
   end
 

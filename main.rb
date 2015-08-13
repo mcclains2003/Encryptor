@@ -66,23 +66,36 @@ case choice_file_or_message
       puts "\nPlease type a message you would like encrypted:"
       ins_message = $stdin.gets.chomp.to_s
 
-      puts "\nPlease enter the encryption rotation:"
-      rotation = $stdin.gets.chomp.to_i
+      puts "\nPlease enter the first encryption rotation:"
+      x = $stdin.gets.chomp.to_i
+
+      puts "\nPlease enter the second encryption rotation:"
+      y = $stdin.gets.chomp.to_i
+
+      puts "\nPlease enter the third encryption rotation:"
+      z = $stdin.gets.chomp.to_i
 
       e = Encryptor.new
 
-      puts e.encrypt(ins_message, rotation)
+      puts e.encrypt(ins_message, x, y, z)
 
     when "2"
+
       puts "\nPlease type a message you would like decrypted:"
       ins_message = $stdin.gets.chomp.to_s
 
-      puts "\nPlease enter the decryption rotation:"
-      rotation = $stdin.gets.chomp.to_i
+      puts "\nPlease enter the first decryption rotation:"
+      x = $stdin.gets.chomp.to_i
+
+      puts "\nPlease enter the second decryption rotation:"
+      y = $stdin.gets.chomp.to_i
+
+      puts "\nPlease enter the third decryption rotation:"
+      z = $stdin.gets.chomp.to_i
 
       e = Encryptor.new
 
-      puts e.decrypt(ins_message, rotation)
+      puts e.decrypt(ins_message, x, y, z)
 
     else
       puts "That is not an option"
