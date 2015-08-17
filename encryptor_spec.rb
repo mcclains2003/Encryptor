@@ -4,6 +4,10 @@ require_relative 'encryptor'
 
 describe Encryptor do 
 
+  it "checks to see if password correct" do
+    @test.check?(password) = ""
+  end
+
 
   before do 
     @test = Encryptor.new
@@ -36,10 +40,8 @@ describe Encryptor do
   end
 
   it "encrypts a file" do
-    @test.encrypt_file(@filename, @rotation)
-    text = File.read('file_spec_test.txt.encrypted')
-    #binding.pry
-    text.read.should == "`'tn$-v%-%)rr&"
+    @test.encrypt_file(@filename, @rotation1, @rotation2, @rotation3)
+    File.read('file_spec_test.txt.encrypted').should == "`'tn$-v%-%)rr&"
   end
 
   it "decrypts a file" do

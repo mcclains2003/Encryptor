@@ -1,5 +1,7 @@
 require_relative 'encryptor'
 
+if check?(password)
+
 puts "\nWould you like to encrypt/decrypt"
 puts "1. A file"
 puts "2. A typed message"

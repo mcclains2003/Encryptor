@@ -1,9 +1,14 @@
 class Encryptor
 
-  # def initialize
-  #   @message = message
-  #   @rotation = rotation
-  # end
+  def initialize
+    @message = message
+    @rotation = rotation
+  end
+
+  def check?(password)
+    true
+    # Digest::MD5.hexdigest(password) == 
+  end
 
   def cipher(rotation)
     characters = (' '..'z').to_a
