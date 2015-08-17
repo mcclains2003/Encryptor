@@ -1,13 +1,14 @@
+require 'digest/md5'
+
 class Encryptor
 
-  def initialize
-    @message = message
-    @rotation = rotation
-  end
+  # def initialize
+  #   @message = message
+  #   @rotation = rotation
+  # end
 
   def check?(password)
-    true
-    # Digest::MD5.hexdigest(password) == 
+    Digest::MD5.hexdigest(password) == 'd41a9e3915fd905f6427a8e3770546cf'
   end
 
   def cipher(rotation)
@@ -26,7 +27,7 @@ class Encryptor
     cipher_for_rotation[letter]
   end
 
-  def encrypt(string, x, y, z)
+  def encrypt_rotation(string, x, y, z)
     letters = string.split("")
     a = [x, y, z]
     b = []
@@ -39,16 +40,23 @@ class Encryptor
     end.join
   end
 
-  # def encrypt(string, rotation)
-  #   letters = string.split("")
+  def encrypt(string, rotation)
+    letters = string.split("")
 
+    results = letters.collect do |letter|
+      encrypted_letter = encrypt_letter(letter, rotation)
+    end.join
+  end
 
-  #   results = letters.collect do |letter|
-  #     encrypted_letter = encrypt_letter(letter, rotation)
-  #   end.join
-  # end
+  def decrypt(string, rotation)
+    letters = string.split("")
 
-  def decrypt(string, x, y, z)
+    results = letters.collect do |letter|
+      decrypted_letter = decrypt_letter(letter, rotation)
+    end.join
+  end
+
+  def decrypt_rotation(string, x, y, z)
     letters = string.split("")
     a = [x, y, z]
     b = []
@@ -63,8 +71,8 @@ class Encryptor
 
   def encrypt_file(filename, rotation)
     file = File.open(filename, "r")
-    text = file.read
-    encrypted_text = encrypt(text, rotation)
+    string = file.read
+    encrypted_text = encrypt(string, rotation)
     output_file = File.open(filename + ".encrypted", "w")
     output_file.write(encrypted_text)
     output_file.close
@@ -85,9 +93,9 @@ class Encryptor
   end
 
   def crack(message)
-    supported_characters.count.times.collect do |attempt|
+    cracked = supported_characters.count.times.collect do |attempt|
       decrypt(message, attempt)
-    end
+    end.join
   end
 
 end
